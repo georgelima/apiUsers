@@ -4,6 +4,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const routes = require('./routes/index');
 
 // ALLOW CORS
 const allowCors = (req, res, next) => {
@@ -19,11 +20,8 @@ const allowCors = (req, res, next) => {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(allowCors);
-app.set('view engine', 'jade');
+app.use('/', routes);
 
-//START SERVER
-app.listen(5000, ()=>{
-	console.log('Rodando')
-});
+app.set('view engine', 'jade');
 
 module.exports = app;
